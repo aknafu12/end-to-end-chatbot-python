@@ -94,7 +94,7 @@ def main():
 
         if response.lower() in ['goodbye', 'bye']:
             st.write("Thank you for chatting with me. Have a great day!")
-             st.write("Said ካሕሳይ")
+            st.write("Said ካሕሳይ")
             st.stop()
 
 
