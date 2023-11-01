@@ -1,4 +1,3 @@
-# %%
 import os
 import nltk #
 import ssl
@@ -7,13 +6,11 @@ import random
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
-
-# %%
 ssl.create_default_https_context = ssl._create_unverified_context
 nltk.data.path.append(os.path.abspath('nltk_data'))
 nltk.download('punkt')
 
-# %%
+
 #define the contents of chatbot
 bot_contents = [
     {
@@ -54,17 +51,10 @@ bot_contents = [
    
 ]
 
-
-
-
-# %%
 # Create the vectorizer and classifier
 vectorizer = TfidfVectorizer()
 clfr = LogisticRegression(random_state=0, max_iter=1000)
 
-
-
-# %%
 #preprocess the data
 tags =[]
 patterns =[]
@@ -73,14 +63,11 @@ for bot_content in bot_contents:
         tags.append(bot_content['tag'])
         patterns.append(pattern)
 
-
-# %%
 # training the model
 x = vectorizer.fit_transform(patterns)
 y = tags
 clfr.fit(x, y)
 
-# %%
 # a python function to chat with the chatbot
 def chatbot(input_text):
     input_text = vectorizer.transform([input_text])
@@ -90,8 +77,7 @@ def chatbot(input_text):
             response = random.choice(bot_content['responses'])
             return response
 
-# %%
-#deploy the chatbot using Python
+#deploy the chatbot using Python with streamlit
 counter = 0
 
 def main():
@@ -108,19 +94,9 @@ def main():
 
         if response.lower() in ['goodbye', 'bye']:
             st.write("Thank you for chatting with me. Have a great day!")
-            st.write("Said ካሕሳይ")
+             st.write("Said ካሕሳይ")
             st.stop()
 
 
-
-# %%
 if __name__ == '__main__':
     main()
-
-# %%
-
-
-# %%
-
-
-
